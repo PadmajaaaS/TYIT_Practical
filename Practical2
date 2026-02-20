@@ -1,0 +1,44 @@
+# Practical 02: Linear Regression Forecasting
+# Subject: Business Intelligence and Data Analytics
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Sample dataset (Example: Year vs Sales)
+# You can replace with your actual practical data
+
+year = np.array([2018, 2019, 2020, 2021, 2022]).reshape(-1, 1)
+sales = np.array([200, 250, 300, 350, 400])
+
+# Create Linear Regression model
+model = LinearRegression()
+
+# Train model
+model.fit(year, sales)
+
+# Predict future sales (example: 2023)
+future_year = np.array([[2023]])
+predicted_sales = model.predict(future_year)
+
+# Print results
+print("Slope (Coefficient):", model.coef_[0])
+print("Intercept:", model.intercept_)
+print("Predicted Sales for 2023:", predicted_sales[0])
+
+# Predict values for graph
+sales_pred = model.predict(year)
+
+# Plot graph
+plt.scatter(year, sales, color="blue", label="Actual Sales")
+plt.plot(year, sales_pred, color="red", label="Regression Line")
+plt.xlabel("Year")
+plt.ylabel("Sales")
+plt.title("Linear Regression Forecasting")
+plt.legend()
+
+# Save output image
+plt.savefig("output.png")
+
+# Show graph
+plt.show()
